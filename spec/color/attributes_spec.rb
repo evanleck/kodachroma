@@ -32,9 +32,9 @@ describe Kodachroma::Color do
   describe '#alpha' do
     it 'returns the correct alpha value' do
       expect(Kodachroma.paint('rgba(255, 0, 0, 0.75)').alpha).to eq 0.75
-      expect(Kodachroma.paint('#80ff0000').alpha).to             be_within(0.01).of(0.5)
+      expect(Kodachroma.paint('#80ff0000').alpha).to             eq 0
       expect(Kodachroma.paint('transparent').alpha).to           eq 0
-      expect(Kodachroma.paint('hsla(0, 100%, 50%, 0').alpha).to  eq 0
+      expect(Kodachroma.paint('hsla(0, 100%, 50%, 0)').alpha).to eq 0
       expect(red.alpha).to eq 1
     end
   end

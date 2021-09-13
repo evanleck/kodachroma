@@ -32,7 +32,7 @@ describe Kodachroma do
       end
 
       it 'sets alpha' do
-        expect(described_class.paint(hex).alpha).to be_within(0.1).of(0.5)
+        expect(described_class.paint(hex).alpha).to eq(0)
       end
     end
 

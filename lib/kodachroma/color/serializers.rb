@@ -152,10 +152,10 @@ module Kodachroma
 
       def to_basic_hex8
         [
-          to_2char_hex(alpha * 255),
           to_2char_hex(@rgb.r),
           to_2char_hex(@rgb.g),
-          to_2char_hex(@rgb.b)
+          to_2char_hex(@rgb.b),
+          to_2char_hex(alpha * 255)
         ].join
       end
 

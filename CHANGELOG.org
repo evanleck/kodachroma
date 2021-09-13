@@ -1,5 +1,9 @@
 * Kodachroma changelog
 
+** 1.0.1
+
+Fix eight digit hexidecimal conversion to RGB. Fixes [[https://github.com/jfairbank/chroma/pull/30][chroma#30]].
+
 ** 1.0.0
 
 Initial release of Kodachroma which is effectively a copy and rename of the
