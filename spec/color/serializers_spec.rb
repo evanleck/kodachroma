@@ -46,6 +46,7 @@ describe Kodachroma::Color do
       it 'returns the rgb string' do
         expect(green.to_rgb).to eq('rgb(0, 128, 0)')
         expect(blue.to_rgb).to  eq('rgba(0, 0, 255, 0.5)')
+        expect(Kodachroma.paint('#eb09b9c4').to_rgb).to eq('rgba(235, 9, 185, 0.77)')
       end
     end
 
