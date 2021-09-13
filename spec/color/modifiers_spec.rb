@@ -1,17 +1,18 @@
-describe Chroma::Color do
-  let(:red)    { 'red'.paint }
-  let(:yellow) { 'yellow'.paint }
+# frozen_string_literal: true
+describe Kodachroma::Color do
+  let(:red)    { Kodachroma.paint 'red' }
+  let(:yellow) { Kodachroma.paint 'yellow' }
 
   describe '#lighten' do
     context 'with default amount' do
       it 'generates the correct color' do
-        expect(red.lighten).to eq '#ff3333'.paint
+        expect(red.lighten).to eq Kodachroma.paint('#ff3333')
       end
     end
 
     context 'with supplied amount' do
       it 'generates the correct color' do
-        expect(red.lighten(20)).to eq '#ff6666'.paint
+        expect(red.lighten(20)).to eq Kodachroma.paint('#ff6666')
       end
     end
   end
@@ -19,13 +20,13 @@ describe Chroma::Color do
   describe '#brighten' do
     context 'with default amount' do
       it 'generates the correct color' do
-        expect(red.brighten).to eq '#ff1a1a'.paint
+        expect(red.brighten).to eq Kodachroma.paint('#ff1a1a')
       end
     end
 
     context 'with supplied amount' do
       it 'generates the correct color' do
-        expect(red.brighten(20)).to eq '#ff3333'.paint
+        expect(red.brighten(20)).to eq Kodachroma.paint('#ff3333')
       end
     end
   end
@@ -33,13 +34,13 @@ describe Chroma::Color do
   describe '#darken' do
     context 'with default amount' do
       it 'generates the correct color' do
-        expect(red.darken).to eq '#cc0000'.paint
+        expect(red.darken).to eq Kodachroma.paint('#cc0000')
       end
     end
 
     context 'with supplied amount' do
       it 'generates the correct color' do
-        expect(red.darken(20)).to eq '#990000'.paint
+        expect(red.darken(20)).to eq Kodachroma.paint('#990000')
       end
     end
   end
@@ -47,13 +48,13 @@ describe Chroma::Color do
   describe '#desaturate' do
     context 'with default amount' do
       it 'generates the correct color' do
-        expect(red.desaturate).to eq '#f20d0d'.paint
+        expect(red.desaturate).to eq Kodachroma.paint('#f20d0d')
       end
     end
 
     context 'with supplied amount' do
       it 'generates the correct color' do
-        expect(red.desaturate(20)).to eq '#e61919'.paint
+        expect(red.desaturate(20)).to eq Kodachroma.paint('#e61919')
       end
     end
   end
@@ -61,30 +62,30 @@ describe Chroma::Color do
   describe '#saturate' do
     context 'with default amount' do
       it 'generates the correct color' do
-        expect('#123'.paint.saturate).to eq '#0e2236'.paint
+        expect(Kodachroma.paint('#123').saturate).to eq Kodachroma.paint('#0e2236')
       end
     end
 
     context 'with supplied amount' do
       it 'generates the correct color' do
-        expect('#123'.paint.saturate(20)).to eq '#0a223a'.paint
+        expect(Kodachroma.paint('#123').saturate(20)).to eq Kodachroma.paint('#0a223a')
       end
     end
   end
 
   describe '#grayscale' do
     it 'generates the correct color' do
-      expect(red.grayscale).to           eq 'gray'.paint
-      expect('green'.paint.grayscale).to eq '#404040'.paint
+      expect(red.grayscale).to eq Kodachroma.paint('gray')
+      expect(Kodachroma.paint('green').grayscale).to eq Kodachroma.paint('#404040')
     end
   end
 
   describe '#opacity' do
     it 'sets color opacity to supplied amount' do
-      green_a = 'rgba(0, 128, 0, 0.5)'
-      expect(green_a.paint.opacity(1)).to eq 'rgba(0, 128, 0, 1)'.paint
-      expect('green'.paint.opacity(0)).to eq 'rgba(0, 128, 0, 0)'.paint
-      expect(red.opacity(0.3)).to         eq 'rgba(100%, 0%, 0%, 0.3)'.paint
+      green_a = Kodachroma.paint('rgba(0, 128, 0, 0.5)')
+      expect(green_a.opacity(1)).to eq Kodachroma.paint('rgba(0, 128, 0, 1)')
+      expect(Kodachroma.paint('green').opacity(0)).to eq Kodachroma.paint('rgba(0, 128, 0, 0)')
+      expect(red.opacity(0.3)).to eq Kodachroma.paint('rgba(100%, 0%, 0%, 0.3)')
     end
   end
 

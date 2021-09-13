@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe Chroma::Color do
-  let(:red)       { 'red'.paint }
-  let(:other_red) { '#f00'.paint }
-  let(:blue)      { 'blue'.paint }
+describe Kodachroma::Color do
+  let(:red)       { Kodachroma.paint 'red' }
+  let(:other_red) { Kodachroma.paint '#f00' }
+  let(:blue)      { Kodachroma.paint 'blue' }
 
   context 'with equality' do
     it 'equals itself' do
@@ -17,8 +18,8 @@ describe Chroma::Color do
     end
 
     it 'does not equal another instance of a different color' do
-      expect(red).to_not eql(blue)
-      expect(red).to_not eq(blue)
+      expect(red).not_to eql(blue)
+      expect(red).not_to eq(blue)
     end
   end
 

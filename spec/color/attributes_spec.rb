@@ -1,8 +1,9 @@
-describe Chroma::Color do
-  let(:red)    { 'red'.paint }
-  let(:black)  { 'black'.paint }
-  let(:white)  { 'white'.paint }
-  let(:yellow) { 'yellow'.paint }
+# frozen_string_literal: true
+describe Kodachroma::Color do
+  let(:red)    { Kodachroma.paint 'red' }
+  let(:black)  { Kodachroma.paint 'black' }
+  let(:white)  { Kodachroma.paint 'white' }
+  let(:yellow) { Kodachroma.paint 'yellow' }
 
   describe '#dark?' do
     it 'returns true for dark colors' do
@@ -11,15 +12,15 @@ describe Chroma::Color do
     end
 
     it 'returns false for light colors' do
-      expect(white).to_not  be_dark
-      expect(yellow).to_not be_dark
+      expect(white).not_to  be_dark
+      expect(yellow).not_to be_dark
     end
   end
 
   describe '#light?' do
     it 'returns false for dark colors' do
-      expect(red).to_not   be_light
-      expect(black).to_not be_light
+      expect(red).not_to   be_light
+      expect(black).not_to be_light
     end
 
     it 'returns true for light colors' do
@@ -30,11 +31,11 @@ describe Chroma::Color do
 
   describe '#alpha' do
     it 'returns the correct alpha value' do
-      expect('rgba(255, 0, 0, 0.75)'.paint.alpha).to eq 0.75
-      expect('#80ff0000'.paint.alpha).to             be_within(0.01).of(0.5)
-      expect('transparent'.paint.alpha).to           eq 0
-      expect('hsla(0, 100%, 50%, 0'.paint.alpha).to  eq 0
-      expect(red.alpha).to                           eq 1
+      expect(Kodachroma.paint('rgba(255, 0, 0, 0.75)').alpha).to eq 0.75
+      expect(Kodachroma.paint('#80ff0000').alpha).to             be_within(0.01).of(0.5)
+      expect(Kodachroma.paint('transparent').alpha).to           eq 0
+      expect(Kodachroma.paint('hsla(0, 100%, 50%, 0').alpha).to  eq 0
+      expect(red.alpha).to eq 1
     end
   end
 

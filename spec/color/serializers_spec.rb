@@ -1,8 +1,9 @@
-describe Chroma::Color do
+# frozen_string_literal: true
+describe Kodachroma::Color do
   context 'with serializers' do
-    let(:green)       { 'green'.paint }
-    let(:blue)        { 'rgba(0, 0, 255, 0.5)'.paint }
-    let(:transparent) { 'rgba(0, 0, 0, 0)'.paint }
+    let(:green)       { Kodachroma.paint 'green' }
+    let(:blue)        { Kodachroma.paint 'rgba(0, 0, 255, 0.5)' }
+    let(:transparent) { Kodachroma.paint 'rgba(0, 0, 0, 0)' }
 
     describe '#to_hsv' do
       it 'returns the hsv string' do
@@ -72,7 +73,7 @@ describe Chroma::Color do
 
         context 'with unknown named color' do
           it 'returns "<unknown>"' do
-            expect('#123'.paint.to_name).to eq('<unknown>')
+            expect(Kodachroma.paint('#123').to_name).to eq('<unknown>')
           end
         end
       end
@@ -100,7 +101,7 @@ describe Chroma::Color do
 
         context 'with unknown named color' do
           it 'returns returns the hex string' do
-            expect('#123'.paint.to_name(true)).to eq('#112233')
+            expect(Kodachroma.paint('#123').to_name(true)).to eq('#112233')
           end
         end
       end
@@ -108,14 +109,14 @@ describe Chroma::Color do
 
     describe '#to_s' do
       it 'returns the appropriate string according to format' do
-        expect('#ff0000'.paint.to_s).to                    eq('#ff0000')
-        expect('#f00'.paint.to_s).to                       eq('#f00')
-        expect('#80ff0000'.paint.to_s).to                  eq('#80ff0000')
-        expect('hsl(120, 100%, 50%)'.paint.to_s).to        eq('hsl(120, 100%, 50%)')
-        expect('hsla(120, 100%, 50%, 0.5)'.paint.to_s).to  eq('hsla(120, 100%, 50%, 0.5)')
-        expect('hsv(120, 100%, 50%)'.paint.to_s).to        eq('hsv(120, 100%, 50%)')
-        expect('hsva(120, 100%, 50%, 0.5)'.paint.to_s).to  eq('hsva(120, 100%, 50%, 0.5)')
-        expect('red'.paint.to_s).to                        eq('red')
+        expect(Kodachroma.paint('#ff0000').to_s).to                    eq('#ff0000')
+        expect(Kodachroma.paint('#f00').to_s).to                       eq('#f00')
+        expect(Kodachroma.paint('#80ff0000').to_s).to                  eq('#80ff0000')
+        expect(Kodachroma.paint('hsl(120, 100%, 50%)').to_s).to        eq('hsl(120, 100%, 50%)')
+        expect(Kodachroma.paint('hsla(120, 100%, 50%, 0.5)').to_s).to  eq('hsla(120, 100%, 50%, 0.5)')
+        expect(Kodachroma.paint('hsv(120, 100%, 50%)').to_s).to        eq('hsv(120, 100%, 50%)')
+        expect(Kodachroma.paint('hsva(120, 100%, 50%, 0.5)').to_s).to  eq('hsva(120, 100%, 50%, 0.5)')
+        expect(Kodachroma.paint('red').to_s).to                        eq('red')
       end
     end
 
@@ -123,7 +124,7 @@ describe Chroma::Color do
       it 'returns an hsv instance' do
         hsv = green.hsv
 
-        expect(hsv).to be_a(Chroma::ColorModes::Hsv)
+        expect(hsv).to be_a(Kodachroma::ColorModes::Hsv)
         expect(hsv.h).to be_within(0.01).of(120)
         expect(hsv.s).to be_within(0.01).of(1)
         expect(hsv.v).to be_within(0.01).of(0.5)
@@ -135,7 +136,7 @@ describe Chroma::Color do
       it 'returns an hsl instance' do
         hsl = green.hsl
 
-        expect(hsl).to be_a(Chroma::ColorModes::Hsl)
+        expect(hsl).to be_a(Kodachroma::ColorModes::Hsl)
         expect(hsl.h).to be_within(0.01).of(120)
         expect(hsl.s).to be_within(0.01).of(1)
         expect(hsl.l).to be_within(0.01).of(0.25)
