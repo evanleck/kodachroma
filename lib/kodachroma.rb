@@ -38,6 +38,9 @@ require 'kodachroma/converters/hsv_converter'
 
 # The main module.
 module Kodachroma
+  autoload :NAMED_COLORS, 'kodachroma/named_colors'
+  autoload :INVERTED_NAMED_COLORS, 'kodachroma/named_colors'
+
   class << self
     # Returns a new instance of color. Supports hexadecimal, rgb, rgba, hsl,
     # hsla, hsv, hsva, and named color formats.
@@ -69,7 +72,7 @@ module Kodachroma
     # @param name [String]      the color name
     # @return     [String, nil] the color as a string hexadecimal or nil
     def hex_from_name(name)
-      named_colors_map[name]
+      NAMED_COLORS[name]
     end
 
     # Returns the color name of a hexadecimal color if available and nil if no
@@ -84,7 +87,7 @@ module Kodachroma
     # @param hex [String]      the hexadecimal color
     # @return    [String, nil] the color name or nil
     def name_from_hex(hex)
-      hex_named_colors_map[hex]
+      INVERTED_NAMED_COLORS[hex]
     end
 
     # Defines a custom palette for use by {Color#palette}. Uses a DSL inside
@@ -115,16 +118,6 @@ module Kodachroma
       Harmonies.send(:define_method, name) do
         palette_evaluator.evaluate(@color)
       end
-    end
-
-    private
-
-    def hex_named_colors_map
-      @hex_named_colors_map ||= named_colors_map.invert
-    end
-
-    def named_colors_map
-      @named_colors ||= YAML.load_file(File.expand_path('support/named_colors.yml', __dir__))
     end
   end
 end
