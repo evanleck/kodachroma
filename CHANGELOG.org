@@ -1,8 +1,16 @@
 * Kodachroma changelog
 
+** 1.0.2
+
+Fix issue with HSL/HSV values with percent component. Contributed by
+[[https://github.com/DEfusion][DEfusion]] in
+[[https://github.com/evanleck/kodachroma/pull/3][kodachroma#3]] fixing
+[[https://github.com/evanleck/kodachroma/issues/2][kodachroma#2]].
+
 ** 1.0.1
 
-Fix eight digit hexidecimal conversion to RGB. Fixes [[https://github.com/jfairbank/chroma/pull/30][chroma#30]].
+Fix eight digit hexidecimal conversion to RGB. Fixes
+[[https://github.com/jfairbank/chroma/pull/30][chroma#30]].
 
 ** 1.0.0
 
