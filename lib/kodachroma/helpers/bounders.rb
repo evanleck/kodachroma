@@ -41,6 +41,8 @@ module Kodachroma
       # @param n [Numeric, String]
       # @return  [String, Float]
       def to_percentage(n)
+        return n.to_f if n.is_a?(String) && n.include?('%')
+
         n = n.to_f
         n = "#{ n * 100 }%" if n <= 1
         n
